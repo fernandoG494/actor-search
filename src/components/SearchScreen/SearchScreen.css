@@ -1,0 +1,22 @@
+.search {
+    margin: 15% 4em;
+    
+}
+
+.search .title {
+    text-align: center;
+}
+
+.search .button {
+    margin-top: 3em;
+    text-align: center;
+}
+
+.dragger {
+    border: 2px solid #d0d1d2;
+    border-radius: 5px;
+}
+
+.icon-fix {
+    color: #5497e8;
+}
