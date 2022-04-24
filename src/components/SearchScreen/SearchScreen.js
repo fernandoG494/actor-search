@@ -51,9 +51,15 @@ export const SearchScreen = () => {
             </Dragger>
 
             <div className='button'>
-                <Button type="primary" disabled={
-                    ((actorList.length === 1) ? (false) : (true))
-                }>
+                <Button
+                    type="primary"
+                    disabled={
+                        ((actorList.length === 1) ? (false) : (true))
+                    }
+                    onClick={() => {
+                        console.log(process.env.REACT_APP_API_KEY)
+                    }}
+                >
                     Buscar actor
                 </Button>
             </div>
