@@ -4,25 +4,21 @@ import { InboxOutlined } from '@ant-design/icons';
 
 import './SearchScreen.css';
 
-export const SearchScreen = () => {
+export const SearchScreen = ({setActorName}) => {
     const { Dragger } = Upload;
-    const [actorList, setActorList] = useState([]);
 
     const props = {
         name: 'file',
         multiple: false,
         action: 'https://whois.nomada.cloud/upload',
+        headers: {
+            'Nomada': process.env.REACT_APP_API_KEY
+        },
         onChange({ file, fileList }) {
             const { status } = file;
             if (status === 'done') {
-                setActorList(fileList);
-            }
-
-            if(fileList.length === 0){
-                setActorList([]);
-            }if(fileList.length === 1){
-                setActorList([]);
-                setActorList(fileList);
+                console.log('Upload done: ' + file.response.actorName)
+                setActorName(file.response.actorName);
             }
         },
         onDrop(e) {
@@ -35,7 +31,11 @@ export const SearchScreen = () => {
             <div className='title'>
                 <h1>¿Quien es este actor?</h1>
             </div>
-            <Dragger {...props} className="dragger">
+            <Dragger
+                {...props}
+                className="dragger"
+                beforeUpload={file => console.log(typeof(file))}
+            >
                 <p className="ant-upload-drag-icon">
                     <InboxOutlined style={{ fontSize: '40px', color: '#5497e8' }}/>
                 </p>
@@ -45,24 +45,21 @@ export const SearchScreen = () => {
                 <p className="ant-upload-hint">
                     Selecciona la foto de un actor famoso para conocer quien es y en que peliculas ha salido
                 </p>
-                <p className="ant-upload-hint">
-                    (Solo se permite ingresar un actor a la vez)
-                </p>
             </Dragger>
 
-            <div className='button'>
-                <Button
-                    type="primary"
-                    disabled={
-                        ((actorList.length === 1) ? (false) : (true))
-                    }
-                    onClick={() => {
-                        console.log(process.env.REACT_APP_API_KEY)
-                    }}
-                >
-                    Buscar actor
-                </Button>
-            </div>
+            {/* <div className='button'>
+                    <Button
+                        type="primary"
+                        disabled={
+                            ((actor.length > 1) ? (false) : (true))
+                        }
+                        onClick={() => {
+                            console.log("actor name: ", actor)
+                        }}
+                    >
+                        Buscar actor
+                    </Button>
+            </div> */}
         </div>  
     )
 }
