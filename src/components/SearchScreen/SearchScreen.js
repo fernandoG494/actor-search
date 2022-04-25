@@ -1,24 +1,37 @@
-import React, { useState } from 'react'
-import { Button, Upload } from 'antd';
+import React, { useContext } from 'react'
+import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import { types } from "../../types/types";
 
 import './SearchScreen.css';
+import { ActorContext } from '../../providers/ActorContext';
 
-export const SearchScreen = ({setActorName}) => {
+export const SearchScreen = () => {
     const { Dragger } = Upload;
+
+    const { dispatch } = useContext(ActorContext);
+
+    const handleActorSett = (name) => {
+        console.log(name);
+        const action = {
+            type: types.actorSet,
+            payload: { actor: name}
+        }
+
+        dispatch(action);
+    }
 
     const props = {
         name: 'file',
         multiple: false,
-        action: 'https://whois.nomada.cloud/upload',
+        action: process.env.REACT_APP_API_URL,
         headers: {
             'Nomada': process.env.REACT_APP_API_KEY
         },
-        onChange({ file, fileList }) {
+        onChange({ file }) {
             const { status } = file;
             if (status === 'done') {
-                console.log('Upload done: ' + file.response.actorName)
-                setActorName(file.response.actorName);
+                handleActorSett(file.response.actorName);
             }
         },
         onDrop(e) {
@@ -46,20 +59,6 @@ export const SearchScreen = ({setActorName}) => {
                     Selecciona la foto de un actor famoso para conocer quien es y en que peliculas ha salido
                 </p>
             </Dragger>
-
-            {/* <div className='button'>
-                    <Button
-                        type="primary"
-                        disabled={
-                            ((actor.length > 1) ? (false) : (true))
-                        }
-                        onClick={() => {
-                            console.log("actor name: ", actor)
-                        }}
-                    >
-                        Buscar actor
-                    </Button>
-            </div> */}
         </div>  
     )
 }
