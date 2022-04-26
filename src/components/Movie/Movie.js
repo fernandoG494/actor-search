@@ -5,8 +5,8 @@ import { StarFilled } from '@ant-design/icons'
 import './Movie.css';
 
 export const Movie = ({movie}) => {
-
     console.log(movie)
+
     const formatDate = (date) => {
         let newFormat = date.split("-").reverse().join("/");
         return newFormat;
@@ -44,8 +44,10 @@ export const Movie = ({movie}) => {
                     <Card
                         size="small"
                         title={
-                            'Fecha de estreno: ' + formatDate(movie.release_date)
-                        } 
+                            'Fecha de estreno: ' + (movie.release_date ? (
+                                    formatDate(movie.release_date)
+                            ) : 'Desconocida')
+                        }
                         style={{ width: '100%'}}
                     >
                         <p className='overview'>{movie.overview} </p>

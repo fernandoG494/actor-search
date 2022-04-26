@@ -48,7 +48,7 @@ export const ActorScreen = () => {
                         type='primary'
                         onClick={handleReturn}
                     >
-                        Retroceder
+                        Regresar
                     </Button>
                 </Col>
             </Row>

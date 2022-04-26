@@ -7,7 +7,7 @@ export const MoviesLister = ({movies}) => {
         <>
             {
                 movies.length ? (
-                    movies.map(movie => <Movie movie={movie}/>)
+                    movies.map(movie => <Movie key={movie.id} movie={movie}/>)
                 ) : (
                     <></>
                 )

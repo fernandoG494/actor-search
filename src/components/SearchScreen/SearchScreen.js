@@ -19,6 +19,7 @@ export const SearchScreen = () => {
     }
 
     const props = {
+        accept: ".png,.jpg,.PNG,.JPG",
         name: 'file',
         multiple: false,
         action: process.env.REACT_APP_API_URL,
