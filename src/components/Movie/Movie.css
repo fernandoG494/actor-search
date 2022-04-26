@@ -1,0 +1,33 @@
+.votes {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    margin-top: 3px;
+}
+
+.star {
+    margin-top: 3px;
+    margin-left: 3px;
+    color: #F8CB2E;
+}
+
+.sinopsis {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.overview {
+    width: 500px;
+    border: 1px solid #0000;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    margin-right: 0;
+}
+
+.moviePoster {
+    object-fit: contain;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}

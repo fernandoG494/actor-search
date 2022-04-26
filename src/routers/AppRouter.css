@@ -4,5 +4,6 @@
     border: 1px solid #e8e9eb;
     max-width: 90%;
     margin: 5% auto;
-    height: 40em;
+    height: auto;
+    overflow: auto;
 }

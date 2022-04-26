@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Upload } from 'antd';
+import { Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { types } from "../../types/types";
 
@@ -8,16 +8,13 @@ import { ActorContext } from '../../providers/ActorContext';
 
 export const SearchScreen = () => {
     const { Dragger } = Upload;
-
     const { dispatch } = useContext(ActorContext);
 
     const handleActorSett = (name) => {
-        console.log(name);
         const action = {
             type: types.actorSet,
             payload: { actor: name}
         }
-
         dispatch(action);
     }
 
@@ -31,7 +28,11 @@ export const SearchScreen = () => {
         onChange({ file }) {
             const { status } = file;
             if (status === 'done') {
-                handleActorSett(file.response.actorName);
+                if(file.response.actorName !== ''){
+                    handleActorSett(file.response.actorName);
+                }else{
+                    message.error('No se ha podido encontrar al actor, pruebe con otra imagen');
+                }
             }
         },
         onDrop(e) {
@@ -47,7 +48,6 @@ export const SearchScreen = () => {
             <Dragger
                 {...props}
                 className="dragger"
-                beforeUpload={file => console.log(typeof(file))}
             >
                 <p className="ant-upload-drag-icon">
                     <InboxOutlined style={{ fontSize: '40px', color: '#5497e8' }}/>
