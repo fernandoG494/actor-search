@@ -1,25 +1,36 @@
 import React, { useContext } from 'react'
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import { ActorContext } from '../../providers/ActorContext';
+import { types } from '../../types/types';
 
 import './ActorScreen.css';
 
 export const ActorScreen = () => {
-    const { actor } = useContext(ActorContext);
+    const { actor, dispatch } = useContext(ActorContext);
+
+    const handleReturn = () => {
+        console.log('retroceso');
+        const action = {
+            type: types.actorNonSet
+        }
+        dispatch(action);
+    }
 
     return (
         <div className='actorContainer'>
-            <h1>{actor.actor}</h1>
-            <div>
-                <Row>
-                    <Col flex={2}>
-
-                    </Col>
-                    <Col flex={3}>
-                        
-                    </Col>
-                </Row>
-            </div>
+            <Row>
+                <Col flex={4}>
+                    <h1>{actor.actor}</h1>
+                </Col>
+                <Col flex={1} className='button'>
+                    <Button
+                        type='primary'
+                        onClick={handleReturn}
+                    >
+                        Retroceder
+                    </Button>
+                </Col>
+            </Row>
         </div>
     )
 }

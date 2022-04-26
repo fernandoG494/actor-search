@@ -1,3 +1,10 @@
 .actorContainer {
     margin: 5% 4em;
 }
+
+.button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
