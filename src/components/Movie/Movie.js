@@ -5,7 +5,6 @@ import { StarFilled } from '@ant-design/icons'
 import './Movie.css';
 
 export const Movie = ({movie}) => {
-    console.log(movie)
 
     const formatDate = (date) => {
         let newFormat = date.split("-").reverse().join("/");

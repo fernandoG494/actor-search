@@ -14,7 +14,7 @@ Desde la carpeta de la aplicación ejecutar el instalador de dependencias **npm*
 npm install
 ```
 
-Configurar las variables de entorno
+Configurar las variables de entorno en una copia del archivo **.env** renombrada como **.env.local**
 ```bash
 REACT_APP_API_KEY=
 REACT_APP_API_URL=https://whois.nomada.cloud/upload/
